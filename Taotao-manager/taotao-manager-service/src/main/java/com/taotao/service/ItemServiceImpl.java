@@ -2,10 +2,13 @@ package com.taotao.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -13,6 +16,7 @@ import com.github.pagehelper.PageInfo;
 import com.taotao.common.bean.EasyUIPageBean;
 import com.taotao.common.bean.EasyUITreeNode;
 import com.taotao.common.bean.TaotaoResult;
+import com.taotao.common.util.HttpUtils;
 import com.taotao.common.util.IDUtils;
 import com.taotao.mapper.TbItemCatMapper;
 import com.taotao.mapper.TbItemDescMapper;

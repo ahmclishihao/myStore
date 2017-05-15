@@ -15,6 +15,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <dependencies>
+        <!--Jedis-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
         <!-- 单元测试 -->
         <dependency>
             <groupId>junit</groupId>
@@ -134,6 +139,7 @@
                 <configuration>
                     <path>/rest</path>
                     <port>8081</port>
+                    <uriEncoding>UTF-8</uriEncoding>
                 </configuration>
             </plugin>
         </plugins>

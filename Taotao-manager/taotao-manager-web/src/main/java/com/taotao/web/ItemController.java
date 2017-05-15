@@ -3,6 +3,7 @@ package com.taotao.web;
 import com.taotao.common.bean.EasyUIPageBean;
 import com.taotao.common.bean.EasyUITreeNode;
 import com.taotao.common.bean.TaotaoResult;
+import com.taotao.common.util.HttpUtils;
 import com.taotao.common.util.JackSonUtil;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemParamItem;
@@ -10,6 +11,7 @@ import com.taotao.service.ItemParamService;
 import com.taotao.service.ItemService;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +34,8 @@ public class ItemController {
     private ItemService itemService;
     @Resource
     private ItemParamService itemParamService;
+    @Value("${search_server_add}")
+    private String SEARCH_SERVER_ADD;
 
     @RequestMapping("/list")
     @ResponseBody
@@ -62,6 +67,12 @@ public class ItemController {
     public TaotaoResult saveItem(TbItem item, String desc, @RequestParam("itemParams") String itemParamsJson) {
         try {
             itemService.saveItem(item, desc, itemParamsJson);
+
+            // 同步solr数据(跳出事务)
+            Map<String, Object> paramMap = new HashMap<>();
+            paramMap.put("id",item.getId());
+            HttpUtils.POST(SEARCH_SERVER_ADD,paramMap);
+
             return TaotaoResult.ok();
         } catch (Exception e) {
             e.printStackTrace();

@@ -18,7 +18,7 @@
         <slf4j.version>1.6.4</slf4j.version>
         <jackson.version>2.8.8</jackson.version>
         <druid.version>1.0.28</druid.version>
-        <httpclient.version>4.3.5</httpclient.version>
+        <httpclient.version>4.5.3</httpclient.version>
         <jstl.version>1.2</jstl.version>
         <servlet-api.version>2.5</servlet-api.version>
         <jsp-api.version>2.0</jsp-api.version>
@@ -30,14 +30,28 @@
         <jsqlparser.version>0.9.1</jsqlparser.version>
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
         <jedis.version>2.7.2</jedis.version>
-        <solrj.version>4.10.3</solrj.version>
         <freemarker.version>2.3.23</freemarker.version>
         <quartz.version>2.2.2</quartz.version>
+        <solrj.version>4.10.3</solrj.version>
+        <jedis.version>2.9.0</jedis.version>
     </properties>
 
     <!-- 放在manager中 子工程可以选择自己需要的jar包，并且可以统一控制jar包的版本 -->
     <dependencyManagement>
         <dependencies>
+            <!-- solr -->
+            <dependency>
+                <groupId>org.apache.solr</groupId>
+                <artifactId>solr-solrj</artifactId>
+                <version>${solrj.version}</version>
+            </dependency>
+            <!-- redis -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
+            <!--fastDFS-->
             <dependency>
                 <groupId>org.csource</groupId>
                 <artifactId>fastdfs-client-java</artifactId>
@@ -183,12 +197,6 @@
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
-            </dependency>
-            <!-- solr客户端 -->
-            <dependency>
-                <groupId>org.apache.solr</groupId>
-                <artifactId>solr-solrj</artifactId>
-                <version>${solrj.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.freemarker</groupId>

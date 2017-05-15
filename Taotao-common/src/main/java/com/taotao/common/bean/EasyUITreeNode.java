@@ -35,6 +35,7 @@ public class EasyUITreeNode {
         return state;
     }
 
+    // state：节点状态，'open' 或 'closed'，默认：'open'。如果为'closed'的时候，将不自动展开该节点。
     public void setState(boolean state) {
         this.state = state ? "closed" : "open";
     }

@@ -1286,7 +1286,7 @@ SEARCH.page = function(b, a) {
     if (b < 1) {
         b = 1
     }
-    window.location = "http://rest.taotao.com:8082/search.html?q="+SEARCH.query+"&page="+b;
+    window.location = "http://portal.taotao.com:8082/search.html?keywords="+SEARCH.query+"&pageNum="+b;
 //    if (a) {
 //        window.scrollTo(0, $("#filter").offset().top)
 //    }

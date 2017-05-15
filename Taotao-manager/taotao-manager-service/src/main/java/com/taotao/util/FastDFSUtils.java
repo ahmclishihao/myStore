@@ -13,7 +13,7 @@ public class FastDFSUtils {
 
     static{
         try {
-            ClientGlobal.init("./prop/fastDFS.properties");
+            ClientGlobal.init("./prop/resources.properties");
             trackerClient = new TrackerClient();
             trackerServer = trackerClient.getConnection();
             storageClient = new StorageClient(trackerServer, null);

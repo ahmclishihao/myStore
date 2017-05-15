@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taotao.search.dao.ItemInfoMapper">
+    <sql id="solrItemInfoFields">
+        a.id id,
+        a.title item_title,
+        a.sell_point item_sell_point,
+        a.image item_image,
+        a.price item_price,
+        b.name item_category_name,
+        c.item_desc item_desc
+    </sql>
+
+    <select id="selectItemInfo" resultType="com.taotao.search.pojo.SolrItemInfo">
+        SELECT
+        <include refid="solrItemInfoFields"/>
+        FROM tb_item a
+        LEFT JOIN tb_item_cat b ON a.cid = b.id
+        LEFT JOIN tb_item_desc c ON a.id = c.item_id;
+    </select>
+
+    <select id="findSolrItemInfoById" parameterType="long"
+            resultType="com.taotao.search.pojo.SolrItemInfo">
+        SELECT
+        <include refid="solrItemInfoFields"/>
+        FROM tb_item a
+        LEFT JOIN tb_item_cat b ON a.cid = b.id
+        LEFT JOIN tb_item_desc c ON a.id = c.item_id
+        where a.id = #{id};
+    </select>
+
+</mapper>

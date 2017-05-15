@@ -17,4 +17,7 @@
 						http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
     <context:property-placeholder location="classpath:prop/*.properties"/>
     <context:component-scan base-package="com.taotao.rest.service"/>
+
+
+
 </beans>

@@ -1,10 +1,15 @@
 package com.taotao.rest.service;
 
+import com.taotao.common.util.JackSonUtil;
 import com.taotao.mapper.TbItemCatMapper;
+import com.taotao.pojo.TbContent;
 import com.taotao.pojo.TbItemCat;
 import com.taotao.pojo.TbItemCatExample;
+import com.taotao.rest.jedis.JedisGlobalClient;
 import com.taotao.rest.pojo.ItemCatJsonBean;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,12 +25,35 @@ public class ItemCatServiceImpl implements ItemCatService {
 
     @Resource
     private TbItemCatMapper mItemCatMapper;
+    @Resource
+    private JedisGlobalClient mJedisGlobalClient;
+
+    @Value("${redis.item_category_key}")
+    private String REDIS_ITEM_CATEGORY_KEY;
 
     @Override
     public ItemCatJsonBean getItemCatList() {
+        // 1.从redis中取出数据
+        try {
+            String jsonData = mJedisGlobalClient.get(REDIS_ITEM_CATEGORY_KEY);
+            if (StringUtils.isNotBlank(jsonData))
+                return JackSonUtil.jsonToPojo(jsonData,ItemCatJsonBean.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 递归调取商品种类数据
         List<Object> itemCatList = getItemCatListByParentId(0l);
         ItemCatJsonBean itemCatJsonBean = new ItemCatJsonBean();
         itemCatJsonBean.setData(itemCatList);
+
+        // 3.缓存到Redis中去
+        try {
+            mJedisGlobalClient.set(REDIS_ITEM_CATEGORY_KEY, JackSonUtil.objectToJson(itemCatJsonBean));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return itemCatJsonBean;
     }
 
