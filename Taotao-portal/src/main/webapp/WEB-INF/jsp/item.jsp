@@ -262,7 +262,7 @@
 	var itemControl = {
 			param:{
 				descUrl:"/item/desc/",
-				paramUrl:"/item/param/"
+				paramUrl:"/item/params/"
 			},
 			//请求商品描述
 			getItemDesc:function(itemId) {

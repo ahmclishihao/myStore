@@ -17,4 +17,12 @@
 						http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
     <context:property-placeholder location="classpath:prop/*.properties"/>
     <context:component-scan base-package="com.taotao.portal.service"/>
+
+    <bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="templateLoaderPath" value="/WEB-INF/ftl"/>
+    </bean>
+
+    <bean id="freeMarkerConfiguration" factory-bean="freeMarkerConfigurer" factory-method="getConfiguration"/>
+
 </beans>
