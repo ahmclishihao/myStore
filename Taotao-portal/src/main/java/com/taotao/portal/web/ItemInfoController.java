@@ -1,20 +1,15 @@
 package com.taotao.portal.web;
 
-import com.taotao.common.util.JackSonUtil;
 import com.taotao.pojo.TbItemDesc;
-import com.taotao.pojo.TbItemParamItem;
 import com.taotao.portal.pojo.TbItemExt;
 import com.taotao.portal.service.ItemService;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 

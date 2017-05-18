@@ -46,7 +46,7 @@
     <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
         <constructor-arg index="0" ref="jedisPoolConfig"/>
         <constructor-arg index="1" type="java.lang.String" value="${jedis.path}"/>
-        <constructor-arg index="2" type="int" value="${jdeis.port}"/>
+        <constructor-arg index="2" type="int" value="${jedis.port}"/>
     </bean>
 
 
