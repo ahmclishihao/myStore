@@ -1,4 +1,4 @@
-package com.taotao.sso.jedis;
+package com.taotao.order.jedis;
 
 import javax.annotation.Resource;
 
@@ -8,6 +8,7 @@ import redis.clients.jedis.JedisPool;
 public class JedisGlobalClientImpl implements JedisGlobalClient {
     @Resource
     private JedisPool mJedisPool;
+
     @Override
     public Long decr(String key) {
         Jedis resource = mJedisPool.getResource();
@@ -15,6 +16,7 @@ public class JedisGlobalClientImpl implements JedisGlobalClient {
         resource.close();
         return decr;
     }
+
     @Override
     public Long incr(String key) {
         Jedis resource = mJedisPool.getResource();

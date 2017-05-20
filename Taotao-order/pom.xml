@@ -14,6 +14,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <dependencies>
+        <!-- redis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.taotao</groupId>
             <artifactId>Taotao-common</artifactId>

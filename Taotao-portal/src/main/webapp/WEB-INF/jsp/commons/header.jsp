@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript" src="/js/base-v1.js" charset="utf-8"></script>
 <!--shortcut start-->
-<jsp:include page="shortcut.jsp" />
+<jsp:include page="./shortcut.jsp" />
 <!--shortcut end-->
 <div id="o-header-2013">
 	<div class="w" id="header-2013">

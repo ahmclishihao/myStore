@@ -8,6 +8,20 @@ import redis.clients.jedis.JedisPool;
 public class JedisGlobalClientImpl implements JedisGlobalClient {
     @Resource
     private JedisPool mJedisPool;
+    @Override
+    public Long decr(String key) {
+        Jedis resource = mJedisPool.getResource();
+        Long decr = resource.decr(key);
+        resource.close();
+        return decr;
+    }
+    @Override
+    public Long incr(String key) {
+        Jedis resource = mJedisPool.getResource();
+        Long incr = resource.incr(key);
+        resource.close();
+        return incr;
+    }
 
     @Override
     public String set(String key, String value) {

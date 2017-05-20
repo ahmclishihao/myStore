@@ -2,6 +2,10 @@ package com.taotao.sso.jedis;
 
 public interface JedisGlobalClient {
 
+    Long decr(String key);
+
+    Long incr(String key);
+
     String set(String key, String value);
     String get(String key);
     Long hset(String key, String filedname, String value);

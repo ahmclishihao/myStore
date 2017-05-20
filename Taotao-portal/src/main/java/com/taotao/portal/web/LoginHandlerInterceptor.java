@@ -23,8 +23,10 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         try {
             TbUser userLogin = mUserService.getUserByToken(request);
-            if (userLogin != null)
+            if (userLogin != null){
+                request.setAttribute("currentUser",userLogin);
                 return true;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
